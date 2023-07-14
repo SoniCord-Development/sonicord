@@ -1,0 +1,6 @@
+* @sonicord-Development/maintainers
+
+/tests/ @sonicord-Development/maintain-tests
+/discord/ext/testing/ @sonicord-Development/maintain-tests
+/discord/ext/bridge/ @sonicord-Development/maintain-ext-bridge
+/.github/ @sonicord-Development/project-leads

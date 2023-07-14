@@ -1,6 +1,6 @@
+"""
 The MIT License (MIT)
 
-Copyright (c) 2015-2021 Rapptz
 Copyright (c) 2021-present sonicord Development
 
 Permission is hereby granted, free of charge, to any person obtaining a
@@ -20,3 +20,18 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
+"""
+import sys
+
+# PEP 655 Required and NotRequired were added in python 3.11. This file is simply a
+# shortcut import, so we don't have to repeat this import logic across files.
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, Required, TypedDict
+else:
+    from typing_extensions import NotRequired, Required, TypedDict
+
+__all__ = (
+    "Required",
+    "NotRequired",
+    "TypedDict",
+)

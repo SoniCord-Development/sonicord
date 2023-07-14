@@ -1,3 +1,4 @@
+"""
 The MIT License (MIT)
 
 Copyright (c) 2015-2021 Rapptz
@@ -20,3 +21,41 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
+"""
+
+from __future__ import annotations
+
+from .._typed_dict import NotRequired, TypedDict
+from .snowflake import Snowflake
+from .team import Team
+from .user import User
+
+
+class BaseAppInfo(TypedDict):
+    id: Snowflake
+    name: str
+    verify_key: str
+    icon: str | None
+    summary: str
+    description: str
+    terms_of_service_url: NotRequired[str]
+    privacy_policy_url: NotRequired[str]
+    hook: NotRequired[bool]
+    max_participants: NotRequired[int]
+
+
+class AppInfo(BaseAppInfo):
+    team: NotRequired[Team]
+    guild_id: NotRequired[Snowflake]
+    primary_sku_id: NotRequired[Snowflake]
+    slug: NotRequired[str]
+    rpc_origins: list[str]
+    owner: User
+    bot_public: bool
+    bot_require_code_grant: bool
+
+
+class PartialAppInfo(BaseAppInfo):
+    rpc_origins: NotRequired[list[str]]
+    cover_image: NotRequired[str]
+    flags: NotRequired[int]

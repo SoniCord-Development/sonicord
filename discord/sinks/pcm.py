@@ -1,6 +1,6 @@
+"""
 The MIT License (MIT)
 
-Copyright (c) 2015-2021 Rapptz
 Copyright (c) 2021-present sonicord Development
 
 Permission is hereby granted, free of charge, to any person obtaining a
@@ -20,3 +20,25 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
+"""
+from .core import Filters, Sink, default_filters
+
+
+class PCMSink(Sink):
+    """A special sink for .pcm files.
+
+    .. versionadded:: 2.0
+    """
+
+    def __init__(self, *, filters=None):
+        if filters is None:
+            filters = default_filters
+        self.filters = filters
+        Filters.__init__(self, **self.filters)
+
+        self.encoding = "pcm"
+        self.vc = None
+        self.audio_data = {}
+
+    def format_audio(self, audio):
+        return

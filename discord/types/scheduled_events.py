@@ -1,6 +1,6 @@
+"""
 The MIT License (MIT)
 
-Copyright (c) 2015-2021 Rapptz
 Copyright (c) 2021-present sonicord Development
 
 Permission is hereby granted, free of charge, to any person obtaining a
@@ -20,3 +20,45 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
+"""
+
+from __future__ import annotations
+
+from typing import Literal, TypedDict
+
+from .member import Member
+from .snowflake import Snowflake
+from .user import User
+
+ScheduledEventStatus = Literal[1, 2, 3, 4]
+ScheduledEventLocationType = Literal[1, 2, 3]
+ScheduledEventPrivacyLevel = Literal[2]
+
+
+class ScheduledEvent(TypedDict):
+    id: Snowflake
+    guild_id: Snowflake
+    channel_id: Snowflake
+    creator_id: Snowflake
+    name: str
+    description: str
+    image: str | None
+    scheduled_start_time: str
+    scheduled_end_time: str | None
+    privacy_level: ScheduledEventPrivacyLevel
+    status: ScheduledEventStatus
+    entity_type: ScheduledEventLocationType
+    entity_id: Snowflake
+    entity_metadata: ScheduledEventEntityMetadata
+    creator: User
+    user_count: int | None
+
+
+class ScheduledEventEntityMetadata(TypedDict):
+    location: str
+
+
+class ScheduledEventSubscriber(TypedDict):
+    guild_scheduled_event_id: Snowflake
+    user: User
+    member: Member | None

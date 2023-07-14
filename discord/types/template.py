@@ -1,3 +1,4 @@
+"""
 The MIT License (MIT)
 
 Copyright (c) 2015-2021 Rapptz
@@ -20,3 +21,31 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
+"""
+
+from __future__ import annotations
+
+from typing import TypedDict
+
+from .guild import Guild
+from .snowflake import Snowflake
+from .user import User
+
+
+class CreateTemplate(TypedDict):
+    name: str
+    icon: bytes | None
+
+
+class Template(TypedDict):
+    code: str
+    name: str
+    description: str | None
+    usage_count: int
+    creator_id: Snowflake
+    creator: User
+    created_at: str
+    updated_at: str
+    source_guild_id: Snowflake
+    serialized_source_guild: Guild
+    is_dirty: bool | None
